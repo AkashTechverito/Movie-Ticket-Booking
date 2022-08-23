@@ -1,0 +1,3 @@
+As a user, I should get list of available seats in theatre , so that I can book it.
+As a user, I should get ticket when I booked available seat.
+
