@@ -18,7 +18,7 @@ public class SeatController {
     @GetMapping("/seats/available")
     public ResponseEntity<Object> availableSeats() {
 
-        ArrayList<Seat> availableSeats = seatService.availableSeats();
+        ArrayList<Integer> availableSeats = seatService.availableSeats();
 
         return ResponseEntity.ok().body(availableSeats);
     }

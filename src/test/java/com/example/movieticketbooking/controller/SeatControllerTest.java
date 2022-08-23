@@ -38,9 +38,9 @@ public class SeatControllerTest {
     void shouldReturnListOfAvailableSeats() throws Exception {
 
         //Arrange
-        ArrayList<Seat> availableSeats = new ArrayList<>();
-        availableSeats.add(new Seat(1, true));
-        availableSeats.add(new Seat(2, true));
+        ArrayList<Integer> availableSeats = new ArrayList<>();
+        availableSeats.add(1);
+        availableSeats.add(2);
 
         //Act
         when(seatService.availableSeats()).thenReturn(availableSeats);
@@ -48,8 +48,8 @@ public class SeatControllerTest {
         //Assert
         mockMvc.perform(MockMvcRequestBuilders.get("/seats/available"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                        .andExpect(MockMvcResultMatchers.jsonPath("$[0].seatNo").value(1))
-                        .andExpect(MockMvcResultMatchers.jsonPath("$[1].seatNo").value(2));
+                        .andExpect(MockMvcResultMatchers.jsonPath("$[0]").value(1))
+                        .andExpect(MockMvcResultMatchers.jsonPath("$[1]").value(2));
 
         verify(seatService).availableSeats();
     }

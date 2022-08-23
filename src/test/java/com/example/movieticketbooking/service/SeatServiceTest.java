@@ -34,16 +34,16 @@ class SeatServiceTest {
     void shouldReturnAvailableSeats() {
         Seat seat = new Seat(1, true);
         Seat anotherSeat = new Seat(2, true);
-        ArrayList<Seat> availableSeats = new ArrayList<>();
-        availableSeats.add(seat);
-        availableSeats.add(anotherSeat);
+        ArrayList<Integer> availableSeats = new ArrayList<>();
+        availableSeats.add(1);
+        availableSeats.add(2);
 
         seatRepository.save(seat);
         seatRepository.save(anotherSeat);
 
         when(seatRepository.findAvailableSeats()).thenReturn((availableSeats));
 
-        ArrayList<Seat> expectedAvailableSeats = seatService.availableSeats();
+        ArrayList<Integer> expectedAvailableSeats = seatService.availableSeats();
 
 
         Assertions.assertEquals(expectedAvailableSeats, availableSeats);
@@ -54,15 +54,15 @@ class SeatServiceTest {
     void shouldNotReturnBookedSeats() {
         Seat seat = new Seat(1, false);
         Seat anotherSeat = new Seat(2, true);
-        ArrayList<Seat> availableSeats = new ArrayList<>();
-        availableSeats.add(anotherSeat);
+        ArrayList<Integer> availableSeats = new ArrayList<>();
+        availableSeats.add(2);
 
         seatRepository.save(seat);
         seatRepository.save(anotherSeat);
 
         when(seatRepository.findAvailableSeats()).thenReturn((availableSeats));
 
-        ArrayList<Seat> expectedAvailableSeats = seatService.availableSeats();
+        ArrayList<Integer> expectedAvailableSeats = seatService.availableSeats();
 
         Assertions.assertEquals(availableSeats, expectedAvailableSeats);
 

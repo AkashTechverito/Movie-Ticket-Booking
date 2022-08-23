@@ -1,20 +1,17 @@
 package com.example.movieticketbooking.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name="seats")
-@AllArgsConstructor
+@Entity
+@Data
 @NoArgsConstructor
-@Getter
-@Setter
+@AllArgsConstructor
 public class Seat {
     @Id
-    private int seatNo;
+    private int seatNumber;
     private boolean availability;
 }

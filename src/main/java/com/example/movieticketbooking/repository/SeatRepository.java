@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 @Repository
 public interface SeatRepository extends JpaRepository<Seat, Integer> {
-//    @Query("select seat from Seat seat where seat.availability = true")
-    ArrayList<Seat> findAvailableSeats();
+    @Query("select seat.seatNumber from Seat seat where seat.availability=true")
+    ArrayList<Integer> findAvailableSeats();
+
 }
