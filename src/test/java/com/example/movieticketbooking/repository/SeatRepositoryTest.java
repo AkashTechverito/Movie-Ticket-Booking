@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ class SeatRepositoryTest {
 
     Seat seat1,seat2,seat3,seat4,seat5;
 
-    @Autowired
+    @MockBean
     private SeatRepository seatRepository;
 
 
@@ -54,5 +55,5 @@ class SeatRepositoryTest {
         Assertions.assertEquals(1,availableSeats.get(0));
         Assertions.assertEquals(2,availableSeats.get(1));
         Assertions.assertEquals(4,availableSeats.get(2));
-    }
+}
 }

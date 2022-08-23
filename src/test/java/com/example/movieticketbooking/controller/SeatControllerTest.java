@@ -3,7 +3,9 @@ package com.example.movieticketbooking.controller;
 
 import com.example.movieticketbooking.model.Seat;
 import com.example.movieticketbooking.service.SeatService;
+import com.example.movieticketbooking.service.UserService;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -22,6 +24,8 @@ public class SeatControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @MockBean
+    private UserService userService;
     @MockBean
     private SeatService seatService;
 
