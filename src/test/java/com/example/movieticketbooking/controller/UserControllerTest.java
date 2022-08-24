@@ -17,8 +17,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+@WebMvcTest(controllers = UserController.class)
 public class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -26,40 +25,32 @@ public class UserControllerTest {
     @MockBean
     private UserService userService;
 
-    @MockBean
-    private SeatService seatService;
-    @MockBean
-    private SeatRepository seatRepository;
-    @MockBean
-    private SeatController seatController;
-
-
     @Test
     void shouldInvokeBookTicket() throws Exception {
-        Integer seatNumber=1;
-        mockMvc.perform(MockMvcRequestBuilders.post("/book/{seatNumber}",seatNumber)
+        Integer seatNumber = 1;
+        mockMvc.perform(MockMvcRequestBuilders.post("/book/{seatNumber}", seatNumber)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(String.valueOf(seatNumber))).andExpect(MockMvcResultMatchers.status().isOk());
 
+        verify(userService).bookTicket(seatNumber);
     }
+
     @Test
     void shouldReturnTicketWithSeatNumber_1_WhenItIsBooked() throws Exception {
-        Integer seatNumber=1;
-        when(userService.bookTicket(seatNumber)).thenReturn(new Ticket(1,seatNumber));
-        mockMvc.perform(MockMvcRequestBuilders.post("/book/{seatNumber}",seatNumber)
+        Integer seatNumber = 1;
+        when(userService.bookTicket(seatNumber)).thenReturn(new Ticket(1, seatNumber));
+        mockMvc.perform(MockMvcRequestBuilders.post("/book/{seatNumber}", seatNumber)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(String.valueOf(seatNumber))).andExpect(MockMvcResultMatchers.jsonPath("$.seatNumber").value("1"));
 
-        verify(userService,times(1)).bookTicket(seatNumber);
     }
+
     @Test
     void shouldReturnTicketWithSeatNumber_2_WhenItIsBooked() throws Exception {
-        Integer seatNumber=2;
-        when(userService.bookTicket(seatNumber)).thenReturn(new Ticket(1,seatNumber));
-        mockMvc.perform(MockMvcRequestBuilders.post("/book/{seatNumber}",seatNumber)
+        Integer seatNumber = 2;
+        when(userService.bookTicket(seatNumber)).thenReturn(new Ticket(1, seatNumber));
+        mockMvc.perform(MockMvcRequestBuilders.post("/book/{seatNumber}", seatNumber)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(String.valueOf(seatNumber))).andExpect(MockMvcResultMatchers.jsonPath("$.seatNumber").value("2"));
-
-        verify(userService,times(1)).bookTicket(seatNumber);
     }
 }

@@ -11,14 +11,14 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 @SpringBootTest
 class MovieTicketBookingApplicationTests {
 
-    @MockBean
-    private SeatController seatController;
-
-    @MockBean
-    private SeatService seatService;
-
-    @MockBean
-    private SeatRepository seatRepository;
+//    @MockBean
+//    private SeatController seatController;
+//
+//    @MockBean
+//    private SeatService seatService;
+//
+//    @MockBean
+//    private SeatRepository seatRepository;
 
     @Test
     void contextLoads() {

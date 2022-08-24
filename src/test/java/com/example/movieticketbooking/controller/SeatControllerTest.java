@@ -18,14 +18,11 @@ import java.util.ArrayList;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@WebMvcTest
+@WebMvcTest(controllers = SeatController.class)
 public class SeatControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @MockBean
-    private UserService userService;
     @MockBean
     private SeatService seatService;
 

@@ -13,11 +13,11 @@ public class UserService {
     private SeatRepository seatRepository;
 
     public Ticket bookTicket(Integer seatNumber) {
-        ArrayList<Integer> availableSeats = seatRepository.findAvailableSeats();
-        if(availableSeats.contains(seatNumber))
-        seatRepository.book(seatNumber);
+        if(seatRepository.checkAvailability(seatNumber)) {
+            seatRepository.book(seatNumber);
+            return new Ticket(1, seatNumber);
+        }
         else
             throw new RuntimeException("Seat not available");
-        return new Ticket(1, seatNumber);
     }
 }

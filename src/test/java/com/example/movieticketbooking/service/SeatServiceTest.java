@@ -65,7 +65,6 @@ class SeatServiceTest {
         ArrayList<Integer> expectedAvailableSeats = seatService.availableSeats();
 
         Assertions.assertEquals(availableSeats, expectedAvailableSeats);
-
     }
 
 }

@@ -7,18 +7,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class SeatRepositoryTest {
 
     Seat seat1,seat2,seat3,seat4,seat5;
 
-    @MockBean
+    @Autowired
     private SeatRepository seatRepository;
 
 
@@ -55,5 +52,12 @@ class SeatRepositoryTest {
         Assertions.assertEquals(1,availableSeats.get(0));
         Assertions.assertEquals(2,availableSeats.get(1));
         Assertions.assertEquals(4,availableSeats.get(2));
+}
+
+@Test
+    void shouldMakeAvailabilityFalseWhenSeatIsBooked(){
+    seatRepository.book(1);
+    ArrayList<Integer> availableSeats = seatRepository.findAvailableSeats();
+    Assertions.assertFalse(availableSeats.contains(1));
 }
 }
