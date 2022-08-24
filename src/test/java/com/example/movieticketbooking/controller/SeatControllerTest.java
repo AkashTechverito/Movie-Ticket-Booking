@@ -1,11 +1,8 @@
 package com.example.movieticketbooking.controller;
 
 
-import com.example.movieticketbooking.model.Seat;
 import com.example.movieticketbooking.service.SeatService;
-import com.example.movieticketbooking.service.UserService;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -23,6 +20,7 @@ public class SeatControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
     @MockBean
     private SeatService seatService;
 
@@ -49,8 +47,8 @@ public class SeatControllerTest {
         //Assert
         mockMvc.perform(MockMvcRequestBuilders.get("/seats/available"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                        .andExpect(MockMvcResultMatchers.jsonPath("$[0]").value(1))
-                        .andExpect(MockMvcResultMatchers.jsonPath("$[1]").value(2));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0]").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[1]").value(2));
 
         verify(seatService).availableSeats();
     }

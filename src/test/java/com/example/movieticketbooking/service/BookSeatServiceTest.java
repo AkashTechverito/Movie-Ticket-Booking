@@ -1,6 +1,5 @@
 package com.example.movieticketbooking.service;
 
-import com.example.movieticketbooking.model.Ticket;
 import com.example.movieticketbooking.repository.SeatRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,8 @@ import static org.mockito.Mockito.when;
 
 
 @SpringBootTest
-public class UserServiceTest {
+public class BookSeatServiceTest {
+
     @Autowired
     private BookSeatService bookSeatService;
     @MockBean
@@ -37,13 +37,5 @@ public class UserServiceTest {
         assertEquals("Seat not available", exception.getMessage());
     }
 
-    @Test
-    void shouldReturnTicketWhenSeatIsAvailable() {
-        Integer seatNumber = 1;
-        when(seatRepository.checkAvailability(seatNumber)).thenReturn(true);
-        Ticket ticket = bookSeatService.bookSeat(seatNumber);
-        assertEquals(1, ticket.getSeatNumber());
-
-    }
 
 }
